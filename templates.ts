@@ -1,7 +1,7 @@
 export const mvpTemplates: Record<string, { title: string, description: string, category: string, gameData: any }> = {
   "es-ortografia": {
     title: "Ortografía y Acentuación",
-    description: "Módulo MVP de práctica sobre reglas de acentuación (agudas, graves, esdrújulas), diptongos e hiatos.",
+    description: "Módulo de práctica sobre reglas de acentuación (agudas, graves, esdrújulas), diptongos e hiatos.",
     category: "Español",
     gameData: {
       "towerClimb": [
@@ -11,7 +11,7 @@ export const mvpTemplates: Record<string, { title: string, description: string, 
         { "question": "¿Qué opción contiene una palabra grave o llana con tilde?", "options": ["Árbol", "Brújula", "Sofá", "Canción"], "answer": "Árbol" }
       ],
       "millionaire": [
-        { "question": "¿Cuál es la sílaba tónica de la palabra 'dilema'?", "options": ["di", "le", "ma", "ninguna"], "answer": "le" },
+        { "question": "La palabra 'árbol' lleva tilde en la 'a' porque...", "options": ["Es aguda terminada en L", "Es grave terminada en consonante distinta de N o S", "Es esdrújula", "Es un hiato"], "answer": "Es grave terminada en consonante distinta de N o S" },
         { "question": "Las palabras esdrújulas se acentúan siempre en la...", "options": ["Última sílaba", "Penúltima sílaba", "Antepenúltima sílaba", "Trasantepeúltima sílaba"], "answer": "Antepenúltima sílaba" },
         { "question": "¿Cuál es el monosílabo correcto que lleva tilde diacrítica para indicar afirmación?", "options": ["Sí", "Si", "Se", "Te"], "answer": "Sí" },
         { "question": "Identifique el diptongo de la siguiente lista:", "options": ["Causa", "Poeta", "Día", "Baúl"], "answer": "Causa" }
@@ -36,9 +36,9 @@ export const mvpTemplates: Record<string, { title: string, description: string, 
         { "question": "¿Cuántos diptongos hay en la frase: 'El viento sopla fuerte en el puerto'?", "answer": 3 }
       ],
       "pixelReveal": [
-        { "question": "Sílaba que se pronuncia con mayor fuerza de voz en una palabra", "answer": "Tónica" },
-        { "question": "Tipo de tilde que diferencia palabras idénticas pero con distintas funciones (ej. de/dé)", "answer": "Diacrítica" },
-        { "question": "Encuentro de dos vocales que se pronuncian en sílabas distintas", "answer": "Hiato" }
+        { "question": "Sílaba que se pronuncia con mayor fuerza de voz en una palabra", "options": ["Átona", "Tónica", "Penúltima", "Aguda"], "answer": "Tónica" },
+        { "question": "Tipo de tilde que diferencia palabras idénticas pero con distintas funciones (ej. de/dé)", "options": ["Enfática", "Diacrítica", "Ortográfica", "Normativa"], "answer": "Diacrítica" },
+        { "question": "Encuentro de dos vocales que se pronuncian en sílabas distintas", "options": ["Diptongo", "Hiato", "Triptongo", "Sinalefa"], "answer": "Hiato" }
       ],
       "zenSort": [
         "Identificar la sílaba tónica de la palabra",
@@ -60,192 +60,192 @@ export const mvpTemplates: Record<string, { title: string, description: string, 
   },
   "ciencias-primaria": {
     title: "Ciencias y Cuerpo Humano",
-    description: "Módulo infantil (2º a 4º de primaria) con más de 50 preguntas sobre la célula, órganos del cuerpo, alimentación y datos curiosos sobre huesos y sangre.",
+    description: "Módulo para niños de 11 años con más de 50 preguntas sobre organelos celulares (ATP), sistemas del cuerpo, glóbulos, átomos y datos curiosos de la salud.",
     category: "Ciencias",
     gameData: {
       "towerClimb": [
-        { "question": "¿Cuál es el órgano que bombea sangre a todo el cuerpo?", "options": ["Pulmones", "Estómago", "Corazón", "Cerebro"], "answer": "Corazón" },
-        { "question": "¿Qué gas vital respiramos que proviene de los árboles?", "options": ["Dióxido de carbono", "Oxígeno", "Nitrógeno", "Helio"], "answer": "Oxígeno" },
-        { "question": "¿Cuántos huesos tiene aproximadamente el cuerpo de un adulto?", "options": ["100 huesos", "150 huesos", "206 huesos", "300 huesos"], "answer": "206 huesos" },
-        { "question": "¿Cómo se llaman los animales que comen únicamente plantas?", "options": ["Carnívoros", "Herbívoros", "Omnívoros", "Insectívoros"], "answer": "Herbívoros" },
-        { "question": "¿Qué parte de la planta absorbe el agua y nutrientes del suelo?", "options": ["El tallo", "Las hojas", "La flor", "La raíz"], "answer": "La raíz" },
-        { "question": "¿Cuál es el planeta más grande de nuestro Sistema Solar?", "options": ["Tierra", "Marte", "Saturno", "Júpiter"], "answer": "Júpiter" },
-        { "question": "¿Cómo se llama el proceso por el cual el agua líquida se convierte en vapor?", "options": ["Condensación", "Evaporación", "Solidificación", "Fusión"], "answer": "Evaporación" },
-        { "question": "¿Qué animal es un mamífero que vive en el agua?", "options": ["El tiburón", "El pulpo", "La ballena", "La medusa"], "answer": "La ballena" },
-        { "question": "¿Cuál es la estrella más cercana a la Tierra que nos da luz y calor?", "options": ["Alfa Centauri", "La Luna", "El Sol", "Polaris"], "answer": "El Sol" },
-        { "question": "¿Qué órgano nos sirve para pensar y enviar señales al resto del cuerpo?", "options": ["El corazón", "El cerebro", "El hígado", "Los pulmones"], "answer": "El cerebro" },
-        { "question": "¿Cómo se llaman los animales que nacen de huevos puestos por su madre?", "options": ["Vivíparos", "Ovíparos", "Mamíferos", "Herbívoros"], "answer": "Ovíparos" },
-        { "question": "¿Qué insecto cambia de forma a través de la metamorfosis?", "options": ["El perro", "El león", "La mariposa", "El delfín"], "answer": "La mariposa" },
-        { "question": "¿Cuál es el único mamífero capaz de volar?", "options": ["El águila", "El murciélago", "La ardilla voladora", "El colibrí"], "answer": "El murciélago" },
-        { "question": "¿Qué parte del cuerpo nos permite doblar los brazos y piernas?", "options": ["Los músculos", "Las articulaciones", "Los pulmones", "Las costillas"], "answer": "Las articulaciones" },
-        { "question": "¿Qué sentido usamos para saborear una deliciosa manzana?", "options": ["El olfato", "El tacto", "La vista", "El gusto"], "answer": "El gusto" }
+        { "question": "¿Cuál es el órgano más grande del cuerpo humano?", "options": ["El hígado", "El cerebro", "La piel", "El intestino"], "answer": "La piel" },
+        { "question": "¿Qué gas absorben las plantas de la atmósfera durante la fotosíntesis?", "options": ["Oxígeno", "Nitrógeno", "Dióxido de carbono", "Hidrógeno"], "answer": "Dióxido de carbono" },
+        { "question": "¿Cómo se llaman los componentes subatómicos que forman el núcleo de un átomo?", "options": ["Electrones", "Protones y neutrones", "Moléculas", "Células"], "answer": "Protones y neutrones" },
+        { "question": "¿Cuál es la principal función de los glóbulos blancos en la sangre?", "options": ["Transportar oxígeno", "Coagular heridas", "Defender de infecciones", "Producir energía"], "answer": "Defender de infecciones" },
+        { "question": "¿Cómo se llama el reino de la naturaleza al que pertenecen los hongos?", "options": ["Plantae", "Animalia", "Fungi", "Protista"], "answer": "Fungi" },
+        { "question": "¿Qué planeta tiene el día más corto del Sistema Solar, durando unas 10 horas?", "options": ["Venus", "Mercurio", "Júpiter", "Saturno"], "answer": "Júpiter" },
+        { "question": "¿Cuál es la capa más interna y de mayor temperatura en la Tierra?", "options": ["La corteza", "El manto", "La atmósfera", "El núcleo"], "answer": "El núcleo" },
+        { "question": "¿Qué orgánulo celular produce la mayor parte del ATP (energía)?", "options": ["Ribosoma", "Mitocondria", "Lisosoma", "Núcleo"], "answer": "Mitocondria" },
+        { "question": "¿Cómo se llama la propiedad por la cual los líquidos se oponen a fluir (como la miel)?", "options": ["Densidad", "Viscosidad", "Solubilidad", "Tensión superficial"], "answer": "Viscosidad" },
+        { "question": "¿Qué tipo de energía se obtiene a partir del calor interno de la Tierra?", "options": ["Solar", "Eólica", "Geotérmica", "Hidráulica"], "answer": "Geotérmica" },
+        { "question": "¿Qué hueso es el más largo y fuerte del cuerpo humano?", "options": ["Húmero", "Fémur", "Radio", "Costilla"], "answer": "Fémur" },
+        { "question": "¿Qué tipo de células no poseen un núcleo celular definido por una membrana?", "options": ["Eucariotas", "Procariotas", "Animales", "Vegetales"], "answer": "Procariotas" },
+        { "question": "¿Cuál es el animal vertebrado más veloz del planeta al lanzarse en picada?", "options": ["Guepardo", "Halcón peregrino", "Águila calva", "Vencejo"], "answer": "Halcón peregrino" },
+        { "question": "¿Qué sustancia verde de las hojas absorbe la luz solar para la fotosíntesis?", "options": ["Savia", "Clorofila", "Glucosa", "Agua"], "answer": "Clorofila" },
+        { "question": "¿Cuántas cámaras o cavidades tiene el corazón humano?", "options": ["2 cavidades", "3 cavidades", "4 cavidades", "5 cavidades"], "answer": "4 cavidades" }
       ],
       "millionaire": [
-        { "question": "¿De qué color es la clorofila que tienen las plantas en sus hojas?", "options": ["Amarillo", "Rojo", "Azul", "Verde"], "answer": "Verde" },
-        { "question": "¿Qué sustancia líquida y roja viaja por nuestras venas llevando oxígeno?", "options": ["El agua", "La saliva", "La sangre", "El sudor"], "answer": "La sangre" },
-        { "question": "¿Cuál de estos animales es un reptil?", "options": ["El águila", "La rana", "El cocodrilo", "El oso"], "answer": "El cocodrilo" },
-        { "question": "¿Cómo se llama el satélite natural que gira alrededor de la Tierra?", "options": ["El Sol", "Júpiter", "La Luna", "Venus"], "answer": "La Luna" },
-        { "question": "¿Qué órgano usamos para respirar el aire?", "options": ["Los riñones", "Los pulmones", "El estómago", "El corazón"], "answer": "Los pulmones" },
-        { "question": "¿Qué clase de animal es la rana, que vive en el agua y en la tierra?", "options": ["Mamífero", "Reptil", "Anfibio", "Ave"], "answer": "Anfibio" },
-        { "question": "¿De qué animal proviene la lana con la que hacemos suéteres calentitos?", "options": ["De la vaca", "Del caballo", "De la oveja", "Del cerdo"], "answer": "De la oveja" },
-        { "question": "¿Dónde vive un oso polar en su estado natural?", "options": ["En el Polo Sur", "En la selva", "En el desierto", "En el Polo Norte"], "answer": "En el Polo Norte" },
-        { "question": "¿Cuál de estos es un estado básico de la materia?", "options": ["Caliente", "Sólido", "Frío", "Suave"], "answer": "Sólido" },
-        { "question": "¿Cuál es el músculo más activo del cuerpo humano, que nunca para de latir?", "options": ["El bíceps", "El corazón", "La lengua", "El cerebro"], "answer": "El corazón" },
-        { "question": "¿Cuántos dientes de leche tienen los niños aproximadamente?", "options": ["10 dientes", "20 dientes", "32 dientes", "40 dientes"], "answer": "20 dientes" },
-        { "question": "¿De qué color es el agua pura en estado líquido?", "options": ["Azul", "Blanca", "Transparente", "Verde"], "answer": "Transparente" },
-        { "question": "¿Qué parte de la célula contiene las instrucciones de todo lo que debe hacer (su ADN)?", "options": ["La membrana", "El núcleo", "El citoplasma", "La vacuola"], "answer": "El núcleo" },
-        { "question": "¿Qué animal tiene el cuello más largo del mundo?", "options": ["El elefante", "La jirafa", "La avestruz", "El flamenco"], "answer": "La jirafa" },
-        { "question": "¿Qué órgano del cuerpo digiere la comida que tragamos?", "options": ["El corazón", "El estómago", "El cerebro", "Los pulmones"], "answer": "El estómago" }
+        { "question": "¿Cuál es el compuesto químico más abundante en el citoplasma de una célula?", "options": ["Proteínas", "Agua", "Lípidos", "Glucosa"], "answer": "Agua" },
+        { "question": "¿Qué capa de la atmósfera contiene la capa de ozono que filtra los rayos UV?", "options": ["Troposfera", "Estratosfera", "Mesosfera", "Termosfera"], "answer": "Estratosfera" },
+        { "question": "¿Cómo se llama el proceso de división celular para producir células sexuales?", "options": ["Mitosis", "Meiosis", "Fisión binaria", "Fotosíntesis"], "answer": "Meiosis" },
+        { "question": "¿Cuál de estos animales es un invertebrado del grupo de los equinodermos?", "options": ["Pulpo", "Estrella de mar", "Cangrejo", "Caracol"], "answer": "Estrella de mar" },
+        { "question": "¿Cuál es el gas más abundante en la atmósfera de la Tierra?", "options": ["Oxígeno", "Nitrógeno", "Dióxido de carbono", "Argón"], "answer": "Nitrógeno" },
+        { "question": "¿Qué parte del ojo enfoca la luz en la retina?", "options": ["Córnea", "Cristalino", "Iris", "Pupila"], "answer": "Cristalino" },
+        { "question": "¿Qué tipo de enlace químico ocurre cuando dos átomos comparten electrones?", "options": ["Enlace iónico", "Enlace covalente", "Enlace metálico", "Puente de hidrógeno"], "answer": "Enlace covalente" },
+        { "question": "¿Cuál es el elemento químico más ligero y abundante en todo el Universo?", "options": ["Helio", "Hidrógeno", "Oxígeno", "Carbono"], "answer": "Hidrógeno" },
+        { "question": "¿Cuál es la función principal del intestino grueso en el sistema digestivo?", "options": ["Digerir proteínas", "Absorber nutrientes", "Absorber agua", "Producir bilis"], "answer": "Absorber agua" },
+        { "question": "¿Cómo se llama el cambio directo del estado sólido al gaseoso sin pasar por el líquido?", "options": ["Evaporación", "Sublimación", "Condensación", "Solidificación"], "answer": "Sublimación" },
+        { "question": "¿En qué parte del cuerpo humano se produce la hormona insulina?", "options": ["El hígado", "El páncreas", "El estómago", "Los riñones"], "answer": "El páncreas" },
+        { "question": "¿Qué fuerza física describe la oposición al movimiento entre dos superficies en contacto?", "options": ["Gravedad", "Inercia", "Fricción", "Magnetismo"], "answer": "Fricción" },
+        { "question": "¿Quién propuso la teoría de la evolución por selección natural en el siglo XIX?", "options": ["Gregor Mendel", "Louis Pasteur", "Charles Darwin", "Isaac Newton"], "answer": "Charles Darwin" },
+        { "question": "¿Qué tipo de células sanguíneas ayudan a detener las hemorragias formando coágulos?", "options": ["Glóbulos rojos", "Glóbulos blancos", "Plaquetas", "Neuronas"], "answer": "Plaquetas" },
+        { "question": "¿Qué gigante planeta gaseoso tiene una densidad media menor que la del agua?", "options": ["Júpiter", "Saturno", "Urano", "Neptuno"], "answer": "Saturno" }
       ],
       "conceptConquest": [
-        { "term": "Célula", "definition": "La parte más pequeña y viva que forma a todos los seres vivos." },
-        { "term": "Fotosíntesis", "definition": "La forma en que las plantas fabrican su propio alimento usando la luz del sol." },
-        { "term": "Esqueleto", "definition": "El conjunto de todos los huesos que sostienen nuestro cuerpo y protegen los órganos." },
-        { "term": "Atmósfera", "definition": "La capa de aire que rodea a la Tierra y nos permite respirar." },
-        { "term": "Herbívoros", "definition": "Animales que comen únicamente hojas, frutas y plantas." },
-        { "term": "Carnívoros", "definition": "Animales que se alimentan de la carne de otros animales." },
-        { "term": "Ovíparos", "definition": "Animales que nacen a partir de un huevo puesto por su madre." },
-        { "term": "Gravedad", "definition": "La fuerza invisible que atrae las cosas hacia el suelo y evita que salgamos flotando." },
-        { "term": "Termómetro", "definition": "Instrumento médico que se usa para medir la temperatura del cuerpo." },
-        { "term": "Condensación", "definition": "Cuando el vapor de agua sube al cielo, se enfría y forma las nubes." }
+        { "term": "Mitocondria", "definition": "Orgánulo encargado de la respiración celular y de producir energía (ATP)." },
+        { "term": "Procariota", "definition": "Célula primitiva que no tiene su material genético rodeado por una membrana nuclear." },
+        { "term": "Ecosistema", "definition": "Comunidad de seres vivos que interactúan entre sí y con el medio físico no vivo." },
+        { "term": "Cloroplasto", "definition": "Orgánulo de células vegetales donde se almacena la clorofila y ocurre la fotosíntesis." },
+        { "term": "Átomo", "definition": "La partícula más pequeña de un elemento que mantiene sus propiedades químicas." },
+        { "term": "Homeostasis", "definition": "La capacidad de un ser vivo de mantener estable su ambiente interno (como la temperatura)." },
+        { "term": "Presión atmosférica", "definition": "La fuerza que ejerce el peso del aire sobre la superficie de la Tierra." },
+        { "term": "Gravedad", "definition": "Fuerza de atracción mutua que experimentan dos objetos con masa." },
+        { "term": "Hormona", "definition": "Sustancia química liberada por glándulas que regula funciones en el cuerpo." },
+        { "term": "Estoma", "definition": "Pequeño poro en las hojas de las plantas que regula el intercambio de gases." }
       ],
       "detective": {
-        "story": "El cuerpo humano es increíble. Un adulto tiene alrededor de 50 huesos en total. El órgano principal para pensar es el corazón, el cual se ubica dentro de la cabeza. Para respirar, los seres humanos utilizamos los riñones, que absorben el oxígeno.",
+        "story": "La materia está formada por átomos, los cuales tienen electrones en su núcleo. En el cuerpo, las venas llevan sangre oxigenada directamente desde el corazón a los órganos. Además, la fotosíntesis es realizada por plantas durante la noche liberando helio al aire.",
         "lies": [
-          { "falsePhrase": "alrededor de 50 huesos", "truth": "alrededor de 206 huesos" },
-          { "falsePhrase": "el corazón, el cual se ubica dentro de la cabeza", "truth": "el cerebro, el cual se ubica dentro de la cabeza" },
-          { "falsePhrase": "utilizamos los riñones", "truth": "utilizamos los pulmones" }
+          { "falsePhrase": "electrones en su núcleo", "truth": "protones y neutrones en su núcleo (los electrones orbitan alrededor)" },
+          { "falsePhrase": "venas llevan sangre oxigenada", "truth": "arterias llevan sangre oxigenada (las venas llevan sangre desoxigenada)" },
+          { "falsePhrase": "durante la noche liberando helio", "truth": "durante el día liberando oxígeno" }
         ]
       },
       "safeBox": [
-        { "question": "¿Cuántos ojos tiene una araña común en la mayoría de los casos?", "answer": 8 },
-        { "question": "Un adulto promedio tiene aproximadamente ¿cuántos litros de sangre en el cuerpo?", "answer": 5 },
-        { "question": "¿Cuántos sentidos básicos tiene el ser humano (vista, oído, olfato, gusto y tacto)?", "answer": 5 },
-        { "question": "¿Cuántas patas tiene un insecto cualquiera?", "answer": 6 }
+        { "question": "¿Cuántos planetas rocosos existen en nuestro Sistema Solar (Mercurio, Venus, Tierra, Marte)?", "answer": 4 },
+        { "question": "Un ser humano promedio posee ¿cuántos sentidos sensoriales primarios?", "answer": 5 },
+        { "question": "¿En cuántos estados físicos principales se presenta el agua de forma natural en la Tierra?", "answer": 3 },
+        { "question": "¿Cuántas extremidades tiene un pulpo común?", "answer": 8 }
       ],
       "pixelReveal": [
-        { "question": "Estrella gigante amarilla que da luz y calor a la Tierra", "answer": "Sol" },
-        { "question": "Líquido vital indispensable que cubre la mayor parte de nuestro planeta", "answer": "Agua" },
-        { "question": "Gas vital que respiramos y purifican las plantas", "answer": "Oxígeno" },
-        { "question": "Órgano que controla los pensamientos y movimientos", "answer": "Cerebro" },
-        { "question": "Animal doméstico conocido como el mejor amigo del hombre", "answer": "Perro" },
-        { "question": "Único mamífero marino que respira por un espiráculo en su lomo", "answer": "Delfín" },
-        { "question": "El felino más rápido de la tierra", "answer": "Guepardo" },
-        { "question": "Grupo de animales al que pertenecen los leones, perros y humanos", "answer": "Mamíferos" }
+        { "question": "El único satélite natural de la Tierra", "options": ["Fobos", "Deimos", "Luna", "Titán"], "answer": "Luna" },
+        { "question": "Órgano más grande del cuerpo humano", "options": ["Hígado", "Piel", "Cerebro", "Corazón"], "answer": "Piel" },
+        { "question": "Gas indispensable para la vida terrestre producido por fotosíntesis", "options": ["Helio", "Oxígeno", "Argón", "Cloro"], "answer": "Oxígeno" },
+        { "question": "Hueso más largo del esqueleto humano", "options": ["Fémur", "Clavícula", "Radio", "Tibia"], "answer": "Fémur" },
+        { "question": "Elemento químico de la tabla periódica representado por la letra 'O'", "options": ["Oro", "Ósmio", "Oxígeno", "Plata"], "answer": "Oxígeno" },
+        { "question": "Mamífero marino que respira por un espiráculo", "options": ["Delfín", "Tiburón", "Barracuda", "Pulpo"], "answer": "Delfín" },
+        { "question": "Fuerza física que nos mantiene unidos al suelo", "options": ["Fricción", "Gravedad", "Magnetismo", "Inercia"], "answer": "Gravedad" },
+        { "question": "Orgánulo celular central que contiene el material genético", "options": ["Mitocondria", "Núcleo", "Ribosoma", "Lisosoma"], "answer": "Núcleo" }
       ],
       "zenSort": [
-        "La oruga nace de un pequeño huevo en una hoja",
-        "La oruga come muchas hojas y crece rápidamente",
-        "La oruga se envuelve en una crisálida colgada de una rama",
-        "Dentro de la crisálida ocurre la gran transformación celular",
-        "Una hermosa mariposa sale volando de la crisálida"
+        "La luz solar es absorbida por la clorofila de las hojas",
+        "Las raíces absorben agua y sales minerales del suelo",
+        "El dióxido de carbono entra a través de los estomas",
+        "La fotosíntesis produce glucosa (alimento) y oxígeno",
+        "Las plantas liberan el oxígeno al aire que respiramos"
       ],
       "bossRaid": {
-        "bossName": "Virus Mutante Gigante",
+        "bossName": "Super-Bacteria Patógena",
         "maxHp": 1000,
         "questions": [
-          { "question": "¿Qué hábito diario evita que los virus entren a nuestro cuerpo?", "options": ["Lavarse las manos", "Jugar videojuegos", "Dormir tarde", "Correr descalzo"], "answer": "Lavarse las manos", "damage": 200 },
-          { "question": "¿Cómo se llama la medicina que nos inyectan para enseñarle a nuestro cuerpo a combatir virus?", "options": ["Vacuna", "Caramelo", "Jarabe", "Venda"], "answer": "Vacuna", "damage": 200 },
-          { "question": "¿Qué pequeños seres vivos invisibles al ojo humano pueden causarnos gripe?", "options": ["Microbios y virus", "Hormigas", "Peces", "Gatos"], "answer": "Microbios y virus", "damage": 200 },
-          { "question": "¿Cuál es la mejor forma de limpiar las verduras antes de comerlas?", "options": ["Lavarlas con agua limpia", "Limpiarlas con la camisa", "Soplarlas", "Dejarlas al sol"], "answer": "Lavarlas con agua limpia", "damage": 150 },
-          { "question": "¿Qué parte de nuestro cuerpo nos defiende de las enfermedades como un ejército?", "options": ["El sistema inmunológico", "Los huesos", "El cabello", "Las uñas"], "answer": "El sistema inmunológico", "damage": 150 },
-          { "question": "¿Qué debemos comer para crecer sanos y fuertes?", "options": ["Frutas y verduras", "Solo dulces", "Refrescos", "Papas fritas"], "answer": "Frutas y verduras", "damage": 100 }
+          { "question": "¿Qué tipo de medicamentos combaten específicamente las infecciones bacterianas?", "options": ["Antibióticos", "Antivirales", "Analgésicos", "Antihistamínicos"], "answer": "Antibióticos", "damage": 200 },
+          { "question": "¿Qué descubridor de la penicilina en 1928 revolucionó la medicina moderna?", "options": ["Louis Pasteur", "Alexander Fleming", "Robert Koch", "Gregor Mendel"], "answer": "Alexander Fleming", "damage": 200 },
+          { "question": "¿Cómo se llama el proceso de purificación de líquidos mediante calor inventado por Louis Pasteur?", "options": ["Pasteurización", "Filtración", "Evaporación", "Destilación"], "answer": "Pasteurización", "damage": 200 },
+          { "question": "¿Qué estructura bacteriana protege a la célula de ataques externos y desecación?", "options": ["Pared celular", "Membrana celular", "Núcleo", "Flagelo"], "answer": "Pared celular", "damage": 150 },
+          { "question": "¿Qué células del sistema inmunitario fabrican anticuerpos contra los patógenos?", "options": ["Glóbulos rojos", "Linfocitos", "Plaquetas", "Neuronas"], "answer": "Linfocitos", "damage": 150 },
+          { "question": "¿Cuál es una vía común de transmisión de bacterias patógenas al comer?", "options": ["Manos sucias o comida mal lavada", "Usar cubiertos limpios", "Beber agua embotellada", "Comer verduras cocidas"], "answer": "Manos sucias o comida mal lavada", "damage": 100 }
         ]
       }
     }
   },
   "cultura-primaria": {
     title: "Cultura General Básica",
-    description: "Módulo infantil (2º a 4º de primaria) con más de 50 preguntas curiosas sobre geografía mundial, monumentos famosos como el Big Ben, el río Amazonas y los dinosaurios.",
+    description: "Módulo para niños de 11 años con más de 50 preguntas sobre historia mundial, geografía, astronomía, el río Amazonas y los dinosaurios.",
     category: "Cultura",
     gameData: {
       "towerClimb": [
-        { "question": "¿Cuál es el río más largo y caudaloso del mundo?", "options": ["El Nilo", "El Amazonas", "El Misisipi", "El Sena"], "answer": "El Amazonas" },
-        { "question": "¿En qué ciudad de Europa se encuentra el famoso reloj Big Ben?", "options": ["París", "Roma", "Londres", "Madrid"], "answer": "Londres" },
-        { "question": "¿Cuántos continentes tiene el planeta Tierra en total?", "options": ["3 continentes", "5 continentes", "6 continentes", "8 continentes"], "answer": "6 continentes" },
-        { "question": "¿Hace cuántos millones de años aproximadamente se extinguieron los dinosaurios?", "options": ["1 millón de años", "5 millones de años", "66 millones de años", "500 millones de años"], "answer": "66 millones de años" },
-        { "question": "¿Qué país de América del Norte es famoso por sus pirámides del Sol y la Luna y el mariachi?", "options": ["Canadá", "México", "Brasil", "Colombia"], "answer": "México" },
-        { "question": "¿Cuál es el idioma oficial de la mayor parte de los países de América del Sur?", "options": ["Inglés", "Francés", "Español", "Alemán"], "answer": "Español" },
-        { "question": "Qué gran océano separa a América de Europa y África?", "options": ["Océano Pacífico", "Océano Índico", "Océano Atlántico", "Océano Ártico"], "answer": "Océano Atlántico" },
-        { "question": "¿Cuál es la montaña más alta de todo el planeta Tierra?", "options": ["El K2", "El Monte Everest", "El Kilimanjaro", "El Aconcagua"], "answer": "El Monte Everest" },
-        { "question": "¿Quién pintó el famoso cuadro de la Mona Lisa?", "options": ["Pablo Picasso", "Vincent van Gogh", "Leonardo da Vinci", "Michelangelo"], "answer": "Leonardo da Vinci" },
-        { "question": "¿Qué país asiático tiene la muralla de piedra más larga del mundo?", "options": ["Japón", "China", "India", "Corea"], "answer": "China" },
-        { "question": "¿En qué país de Europa se inventó la deliciosa pizza?", "options": ["España", "Francia", "Italia", "Grecia"], "answer": "Italia" },
-        { "question": "¿Cuál es el animal terrestre más rápido del mundo entero?", "options": ["El león", "El caballo", "El guepardo", "El avestruz"], "answer": "El guepardo" },
-        { "question": "¿Qué planeta de nuestro Sistema Solar tiene unos anillos muy grandes y brillantes?", "options": ["Júpiter", "Urano", "Saturno", "Neptuno"], "answer": "Saturno" },
-        { "question": "¿Cuál es el país más grande de todo el mundo en tamaño de territorio?", "options": ["Canadá", "Rusia", "China", "Estados Unidos"], "answer": "Rusia" },
-        { "question": "¿Qué antiguo monumento en Egipto tiene cuerpo de león y cabeza humana?", "options": ["La Pirámide de Keops", "La Esfinge", "El Obelisco", "El Templo de Luxor"], "answer": "La Esfinge" }
+        { "question": "¿Cuál es el río más largo y caudaloso del mundo?", "options": ["El Nilo", "El Amazonas", "El Misisipi", "El Yangtsé"], "answer": "El Amazonas" },
+        { "question": "¿En qué ciudad se encuentra el famoso reloj Big Ben y el parlamento británico?", "options": ["París", "Roma", "Londres", "Dublín"], "answer": "Londres" },
+        { "question": "¿Cuál es el océano más grande del planeta Tierra?", "options": ["Océano Atlántico", "Océano Índico", "Océano Pacífico", "Océano Ártico"], "answer": "Océano Pacífico" },
+        { "question": "¿Qué civilización antigua construyó la ciudadela de Machu Picchu en Perú?", "options": ["Maya", "Azteca", "Inca", "Egipcia"], "answer": "Inca" },
+        { "question": "¿Qué país europeo colonizó la mayor parte del continente americano durante el siglo XVI?", "options": ["Inglaterra", "Francia", "España", "Portugal"], "answer": "España" },
+        { "question": "¿Qué país de Europa destaca por su forma geográfica de bota en el mapa?", "options": ["España", "Grecia", "Italia", "Francia"], "answer": "Italia" },
+        { "question": "¿Cuál es la montaña más alta del mundo con 8848 metros de altura?", "options": ["K2", "Aconcagua", "Monte Everest", "Kilimanjaro"], "answer": "Monte Everest" },
+        { "question": "¿Qué famoso artista renacentista pintó La Última Cena y la Mona Lisa?", "options": ["Miguel Ángel", "Rafael", "Leonardo da Vinci", "Donatello"], "answer": "Leonardo da Vinci" },
+        { "question": "¿Qué antigua maravilla del mundo sobrevivió hasta hoy en el desierto de Egipto?", "options": ["El Faro de Alejandría", "Las Pirámides de Giza", "El Coloso de Rodas", "Jardines Colgantes"], "answer": "Las Pirámides de Giza" },
+        { "question": "¿En qué año se firmó el Descubrimiento de América por Cristóbal Colón?", "options": ["1453", "1492", "1521", "1776"], "answer": "1492" },
+        { "question": "¿Cuál es el país más extenso del planeta en superficie terrestre?", "options": ["Canadá", "Rusia", "China", "Estados Unidos"], "answer": "Rusia" },
+        { "question": "Quién fue el autor de la Grecia clásica que escribió la Ilíada y la Odisea?", "options": ["Sócrates", "Platón", "Homero", "Aristóteles"], "answer": "Homero" },
+        { "question": "¿Qué país asiático tiene la muralla militar defensiva más larga del mundo?", "options": ["Japón", "China", "India", "Mongolia"], "answer": "China" },
+        { "question": "¿Cuál es el desierto más árido y caluroso del planeta ubicado en África?", "options": ["Desierto de Gobi", "Desierto del Sáhara", "Desierto de Atacama", "Desierto de Kalahari"], "answer": "Desierto del Sáhara" },
+        { "question": "¿Qué línea imaginaria divide a la Tierra exactamente en hemisferio Norte y Sur?", "options": ["Meridiano de Greenwich", "Ecuador", "Trópico de Cáncer", "Trópico de Capricornio"], "answer": "Ecuador" }
       ],
       "millionaire": [
-        { "question": "¿Cuál es el metal del que está hecha principalmente la Estatua de la Libertad?", "options": ["Oro", "Cobre", "Hierro", "Plata"], "answer": "Cobre" },
-        { "question": "¿Qué instrumento musical tiene teclas blancas y negras y cuerdas dentro?", "options": ["La guitarra", "La trompeta", "El piano", "La flauta"], "answer": "El piano" },
-        { "question": "¿Cuál es el país de origen de los osos pandas gigantes?", "options": ["Australia", "China", "Canadá", "Brasil"], "answer": "China" },
-        { "question": "¿Qué país sudamericano es famoso por tener forma de una larga y delgada tira junto al océano?", "options": ["Argentina", "Chile", "Perú", "Brasil"], "answer": "Chile" },
-        { "question": "¿En qué continente queda el desierto más caluroso y grande del mundo, el Sáhara?", "options": ["Asia", "América", "África", "Europa"], "answer": "África" },
-        { "question": "¿Qué color se obtiene al mezclar pintura azul y pintura amarilla?", "options": ["Morado", "Verde", "Naranja", "Marrón"], "answer": "Verde" },
-        { "question": "¿Cómo se llama el gran libro que contiene los mapas de todos los países del mundo?", "options": ["Diccionario", "Enciclopedia", "Atlas", "Novela"], "answer": "Atlas" },
-        { "question": "¿Qué animal es conocido tradicionalmente como el rey de la selva?", "options": ["El tigre", "El elefante", "El león", "El gorila"], "answer": "El león" },
-        { "question": "¿Cuál es la capital de Francia, famosa por la hermosa Torre Eiffel?", "options": ["Madrid", "París", "Roma", "Londres"], "answer": "París" },
-        { "question": "¿En qué estación del año las hojas de los árboles se caen y se vuelven amarillas?", "options": ["Primavera", "Verano", "Otoño", "Invierno"], "answer": "Otoño" },
-        { "question": "¿Cuántos colores tiene el arcoíris en el cielo?", "options": ["5 colores", "7 colores", "10 colores", "12 colores"], "answer": "7 colores" },
-        { "question": "¿Qué país del continente oceánico es famoso por sus canguros y koalas?", "options": ["Nueva Zelanda", "Japón", "Australia", "Madagascar"], "answer": "Australia" },
-        { "question": "¿Qué forma geométrica tiene tres lados iguales o diferentes?", "options": ["Cuadrado", "Círculo", "Triángulo", "Rectángulo"], "answer": "Triángulo" },
-        { "question": "¿Cuál es la fruta más consumida del mundo y que es famosa por ser amarilla?", "options": ["La manzana", "La naranja", "El banano / plátano", "La uva"], "answer": "El banano / plátano" },
-        { "question": "¿Qué personaje histórico cruzó el océano y llegó a América en 1492?", "options": ["Marco Polo", "Cristóbal Colón", "Julio César", "Napoleón"], "answer": "Cristóbal Colón" }
+        { "question": "¿Cuál es el metal del que está hecha la Estatua de la Libertad, dándole su color verde por oxidación?", "options": ["Hierro", "Cobre", "Aluminio", "Bronce"], "answer": "Cobre" },
+        { "question": "¿Qué país de América del Sur es el más grande en territorio y población?", "options": ["Argentina", "Colombia", "Brasil", "Perú"], "answer": "Brasil" },
+        { "question": "Cuál es el instrumento de cuerda frotada más grande y de tono más grave en una orquesta?", "options": ["Violonchelo", "Viola", "Violín", "Contrabajo"], "answer": "Contrabajo" },
+        { "question": "¿Qué país europeo destaca por tener canales y góndolas en la ciudad de Venecia?", "options": ["Francia", "Italia", "España", "Holanda"], "answer": "Italia" },
+        { "question": "¿Cuál es el animal mamífero más grande que haya existido jamás en la Tierra?", "options": ["Elefante africano", "Tiranosaurio Rex", "Ballena azul", "Tiburón ballena"], "answer": "Ballena azul" },
+        { "question": "¿Qué país asiático es conocido tradicionalmente como el País del Sol Naciente?", "options": ["China", "Japón", "Corea del Sur", "India"], "answer": "Japón" },
+        { "question": "¿Cuál es el libro de mapas geográficos más completo de un territorio o el mundo?", "options": ["Enciclopedia", "Diccionario", "Catálogo", "Atlas"], "answer": "Atlas" },
+        { "question": "¿En qué continente se originó la especie humana (Homo sapiens)?", "options": ["Asia", "Europa", "África", "América"], "answer": "África" },
+        { "question": "¿Quién fue el científico alemán que formuló la famosa Teoría de la Relatividad?", "options": ["Isaac Newton", "Galileo Galilei", "Albert Einstein", "Stephen Hawking"], "answer": "Albert Einstein" },
+        { "question": "¿Cuál es la capital de Australia?", "options": ["Sídney", "Melbourne", "Canberra", "Brisbane"], "answer": "Canberra" },
+        { "question": "¿En qué cordillera montañosa de América se encuentra el volcán más alto del mundo?", "options": ["Los Alpes", "El Himalaya", "Los Andes", "Las Rocosas"], "answer": "Los Andes" },
+        { "question": "¿Qué civilización de Mesopotamia inventó la escritura cuneiforme?", "options": ["Egipcia", "Sumeria", "Romana", "Griega"], "answer": "Sumeria" },
+        { "question": "¿Qué país donó la Estatua de la Libertad a los Estados Unidos en 1886?", "options": ["Reino Unido", "Francia", "España", "Italia"], "answer": "Francia" },
+        { "question": "¿Cuál es el planeta con la rotación sobre su propio eje más rápida del Sistema Solar?", "options": ["Júpiter", "Saturno", "Urano", "Neptuno"], "answer": "Júpiter" },
+        { "question": "¿Quién fue el primer ser humano en viajar al espacio exterior en 1961?", "options": ["Neil Armstrong", "Yuri Gagarin", "Buzz Aldrin", "John Glenn"], "answer": "Yuri Gagarin" }
       ],
       "conceptConquest": [
-        { "term": "Pirámide", "definition": "Gran monumento antiguo de piedra con forma triangular hecho en Egipto." },
-        { "term": "Planeta", "definition": "Un gran cuerpo redondo que gira alrededor de una estrella como el Sol." },
-        { "term": "Arcoíris", "definition": "Un arco de 7 colores que se forma en el cielo cuando llueve y sale el sol." },
-        { "term": "Océano", "definition": "Una gigantesca masa de agua salada que cubre la mayor parte de la Tierra." },
-        { "term": "Dinosaurio", "definition": "Un reptil gigante que vivió en la Tierra hace millones de años." },
-        { "term": "Continente", "definition": "Una de las grandes extensiones de tierra del planeta, como América o Europa." },
-        { "term": "Brújula", "definition": "Instrumento con una aguja magnética que siempre señala el Norte." },
-        { "term": "Volcán", "definition": "Una montaña que tiene una apertura por donde sale lava muy caliente." },
-        { "term": "Capital", "definition": "La ciudad principal de un país donde están sus gobernantes." },
-        { "term": "Fósil", "definition": "El resto o huella de un animal o planta antigua que se convirtió en piedra." }
+        { "term": "Cuneiforme", "definition": "El sistema de escritura más antiguo conocido inventado por los sumerios." },
+        { "term": "Renacimiento", "definition": "Gran movimiento cultural y artístico en Europa que revivió el arte y ciencia clásicos." },
+        { "term": "Ecuador", "definition": "La línea imaginaria horizontal que divide la Tierra en los hemisferios Norte y Sur." },
+        { "term": "Glaciación", "definition": "Período histórico de bajas temperaturas donde gran parte de la Tierra se cubrió de hielo." },
+        { "term": "Fósil", "definition": "Restos o huellas de organismos antiguos que se conservaron en piedra." },
+        { "term": "Monarquía", "definition": "Forma de gobierno donde el jefe de Estado es un rey o reina." },
+        { "term": "Aconcagua", "definition": "La montaña más alta de América, ubicada en la cordillera de los Andes." },
+        { "term": "Antigüedad clásica", "definition": "Período histórico de florecimiento de las civilizaciones griega y romana." },
+        { "term": "Atlas", "definition": "Libro o colección ordenada de mapas geográficos." },
+        { "term": "Asteroide", "definition": "Cuerpo rocoso y metálico que orbita el Sol, más pequeño que un planeta." }
       ],
       "detective": {
-        "story": "El Big Ben es una famosa torre inclinada ubicada en la hermosa ciudad de París. Es un monumento muy antiguo. Cerca de allí, la gente come pizza, que es un platillo originario de Japón. Los científicos dicen que los dinosaurios se extinguieron hace tan solo 5 años.",
+        "story": "El Big Ben es una famosa torre inclinada de mármol ubicada en París. Fue construida por los antiguos incas. Siglos después, Leonardo da Vinci pintó el cuadro del Grito allí. Los historiadores confirman que Cristóbal Colón llegó a América en el año 1942.",
         "lies": [
-          { "falsePhrase": "torre inclinada ubicada en la hermosa ciudad de París", "truth": "torre de reloj ubicada en Londres" },
-          { "falsePhrase": "originario de Japón", "truth": "originario de Italia" },
-          { "falsePhrase": "hace tan solo 5 años", "truth": "hace 66 millones de años" }
+          { "falsePhrase": "torre inclinada de mármol ubicada en París", "truth": "torre de reloj ubicada en Londres" },
+          { "falsePhrase": "por los antiguos incas", "truth": "por los británicos en el siglo XIX" },
+          { "falsePhrase": "en el año 1942", "truth": "en el año 1492" }
         ]
       },
       "safeBox": [
-        { "question": "¿Cuántos colores tiene la bandera de la mayoría de los países (como México, España o Colombia)?", "answer": 3 },
-        { "question": "¿Cuántas patas tiene una araña de rincón?", "answer": 8 },
-        { "question": "¿En cuántos continentes de la Tierra hay osos pandas salvajes en la actualidad?", "answer": 1 },
-        { "question": "Si multiplicas el número de lados de un cuadrado por dos, y le restas cuatro, ¿cuánto te queda?", "answer": 4 }
+        { "question": "¿Cuántos colores tiene la bandera nacional de Francia (azul, blanco, rojo)?", "answer": 3 },
+        { "question": "¿Cuántos corazones tiene un pulpo común?", "answer": 3 },
+        { "question": "¿En cuántas cámaras o cavidades se divide el corazón de un mamífero?", "answer": 4 },
+        { "question": "Un octágono regular es una figura geométrica de ¿cuántos lados?", "answer": 8 }
       ],
       "pixelReveal": [
-        { "question": "Torre metálica muy famosa ubicada en París", "answer": "Eiffel" },
-        { "question": "Gran muralla de piedra visible desde el espacio en Asia", "answer": "China" },
-        { "question": "Pintura famosa de una mujer con una sonrisa misteriosa", "answer": "Mona Lisa" },
-        { "question": "La montaña más alta de América del Sur", "answer": "Aconcagua" },
-        { "question": "País con forma de bota en Europa", "answer": "Italia" },
-        { "question": "Idioma que hablamos en España y América Latina", "answer": "Español" },
-        { "question": "Color primario que representa el cielo y el mar", "answer": "Azul" },
-        { "question": "Período en el que los dinosaurios dominaban el planeta", "answer": "Jurásico" }
+        { "question": "Torre metálica muy famosa de París", "options": ["Torre de Pisa", "Torre Eiffel", "Big Ben", "Estatua de la Libertad"], "answer": "Torre Eiffel" },
+        { "question": "Gran muralla de piedra en Asia", "options": ["Muralla de Berlín", "Gran Muralla China", "Coliseo Romano", "Pirámides"], "answer": "Gran Muralla China" },
+        { "question": "Pintura famosa con una sonrisa misteriosa de Leonardo da Vinci", "options": ["La Noche Estrellada", "El Grito", "Mona Lisa", "Guernica"], "answer": "Mona Lisa" },
+        { "question": "La montaña más alta de América del Sur", "options": ["Everest", "Aconcagua", "Kilimanjaro", "K2"], "answer": "Aconcagua" },
+        { "question": "País europeo con forma de bota", "options": ["España", "Francia", "Italia", "Grecia"], "answer": "Italia" },
+        { "question": "Idioma nativo en España y la mayor parte de América Latina", "options": ["Inglés", "Portugués", "Español", "Alemán"], "answer": "Español" },
+        { "question": "Color primario que representa el cielo y los océanos", "options": ["Rojo", "Azul", "Amarillo", "Verde"], "answer": "Azul" },
+        { "question": "Período geológico del mesozoico famoso por los dinosaurios", "options": ["Cretácico", "Jurásico", "Triásico", "Pérmico"], "answer": "Jurásico" }
       ],
       "zenSort": [
-        "Los dinosaurios dominan la Tierra por millones de años",
-        "Un enorme asteroide choca contra la Tierra en México",
-        "Una gran nube de polvo y ceniza oscurece el cielo global",
-        "Las plantas y animales gigantes mueren por falta de luz solar",
-        "Los mamíferos pequeños sobreviven y evolucionan en humanos"
+        "Los dinosaurios dominan la Tierra durante la era Mesozoica",
+        "Un asteroide masivo choca en la península de Yucatán en México",
+        "Una densa capa de ceniza y hollín cubre la atmósfera terrestre",
+        "La temperatura desciende drásticamente extinguiendo a los dinosaurios",
+        "Los pequeños mamíferos sobreviven, proliferan y evolucionan"
       ],
       "bossRaid": {
         "bossName": "Monstruo de la Ignorancia",
         "maxHp": 1000,
         "questions": [
-          { "question": "¿Qué país regaló la Estatua de la Libertad a los Estados Unidos?", "options": ["Francia", "España", "Inglaterra", "Italia"], "answer": "Francia", "damage": 200 },
-          { "question": "¿Cómo se llama el instrumento de viento que tocan los marineros en las películas?", "options": ["Armónica", "Flauta", "Trompeta", "Acordeón"], "answer": "Armónica", "damage": 200 },
-          { "question": "¿Qué animal duerme colgado de las ramas cabeza abajo?", "options": ["El murciélago", "El mono", "El oso", "El pájaro"], "answer": "El murciélago", "damage": 200 },
-          { "question": "¿En qué país se encuentran las famosas Pirámides de Giza?", "options": ["Egipto", "Grecia", "México", "Perú"], "answer": "Egipto", "damage": 150 },
-          { "question": "¿Qué línea imaginaria divide a la Tierra en hemisferio Norte y Sur?", "options": ["El Ecuador", "Meridiano de Greenwich", "Trópico de Cáncer", "Círculo Polar"], "answer": "El Ecuador", "damage": 150 },
-          { "question": "Qué animal marino tiene tres corazones y sangre azul?", "options": ["El pulpo", "La ballena", "El delfín", "El tiburón"], "answer": "El pulpo", "damage": 100 }
+          { "question": "¿Qué país donó la Estatua de la Libertad a los Estados Unidos?", "options": ["Francia", "España", "Reino Unido", "Alemania"], "answer": "Francia", "damage": 200 },
+          { "question": "¿Qué científico revolucionó la física con la Teoría de la Relatividad?", "options": ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Stephen Hawking"], "answer": "Albert Einstein", "damage": 200 },
+          { "question": "¿Qué civilización antigua inventó el sistema de escritura cuneiforme?", "options": ["Sumeria", "Egipcia", "Romana", "Griega"], "answer": "Sumeria", "damage": 200 },
+          { "question": "¿En qué país se encuentran las famosas Pirámides de Giza?", "options": ["Egipto", "México", "Perú", "Grecia"], "answer": "Egipto", "damage": 150 },
+          { "question": "¿Qué línea imaginaria divide la Tierra en los hemisferios Norte y Sur?", "options": ["Ecuador", "Meridiano de Greenwich", "Trópico de Cáncer", "Eje Terrestre"], "answer": "Ecuador", "damage": 150 },
+          { "question": "¿Qué animal marino destaca por tener tres corazones y sangre azul?", "options": ["El pulpo", "La ballena azul", "El tiburón blanco", "El delfín"], "answer": "El pulpo", "damage": 100 }
         ]
       }
     }
@@ -286,9 +286,9 @@ export const mvpTemplates: Record<string, { title: string, description: string, 
         { "question": "Si tienes 3 bolsas con 2 dulces en cada una, ¿cuántos dulces tienes en total?", "answer": 6 }
       ],
       "pixelReveal": [
-        { "question": "Resultado de sumar 5 más 5", "answer": "Diez" },
-        { "question": "Figura geométrica redonda sin lados ni esquinas", "answer": "Círculo" },
-        { "question": "Signo que se usa para realizar una suma", "answer": "Mas" }
+        { "question": "Resultado de sumar 5 más 5", "options": ["8", "9", "10", "12"], "answer": "10" },
+        { "question": "Figura geométrica redonda sin lados ni esquinas", "options": ["Cuadrado", "Triángulo", "Círculo", "Rectángulo"], "answer": "Círculo" },
+        { "question": "Signo que se usa para realizar una suma", "options": ["Mas", "Menos", "Por", "Igual"], "answer": "Mas" }
       ],
       "zenSort": [
         "Identificar los datos del problema",
@@ -301,7 +301,7 @@ export const mvpTemplates: Record<string, { title: string, description: string, 
         "bossName": "Mago de las Operaciones",
         "maxHp": 1000,
         "questions": [
-          { "question": "¿Cuál es el resultado de 4 x 3?", "options": ["12", "10", "14", "16"], "answer": "12", "damage": 400 },
+          { "question": "Cuál es el resultado de 4 x 3?", "options": ["12", "10", "14", "16"], "answer": "12", "damage": 400 },
           { "question": "Si sumas 20 más 30, ¿cuánto te da?", "options": ["40", "50", "60", "70"], "answer": "50", "damage": 350 },
           { "question": "Si tienes 15 chocolates y te comes 5, ¿cuántos te quedan?", "options": ["10", "5", "12", "8"], "answer": "10", "damage": 300 }
         ]
