@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx watch server.ts",
     "start": "node dist/server.cjs",
-    "build": "vite build && tsc --project tsconfig.server.json",
+    "build": "vite build && tsc --project tsconfig.server.json && node -e \"const fs = require('fs'); if (fs.existsSync('dist/server.js')) fs.renameSync('dist/server.js', 'dist/server.cjs');\"",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
