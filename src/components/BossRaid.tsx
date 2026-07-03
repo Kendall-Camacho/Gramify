@@ -123,12 +123,12 @@ export default function BossRaid({ bossName, maxHp, questions, onGameEnd }: Boss
           {/* Boss Stats */}
           <motion.div animate={{ x: bossShake ? [-15, 15, -15, 15, 0] : 0 }} className="flex flex-col gap-2 w-[45%]">
              <div className="flex items-center justify-between text-sm uppercase tracking-wider font-bold">
-               <span className="text-[#ef4444] flex items-center gap-2"><Crosshair className="w-4 h-4"/> {bossName}</span>
+               <span className="text-[#a855f7] flex items-center gap-2"><Crosshair className="w-4 h-4"/> {bossName}</span>
                <span className="text-text-muted">{currentHp} / {maxHp}</span>
              </div>
              <div className="h-4 w-full bg-accent border border-border rounded-full overflow-hidden flex justify-end">
                <motion.div 
-                 className="h-full bg-gradient-to-l from-[#ef4444] to-[#b91c1c]"
+                 className="h-full bg-gradient-to-l from-[#a855f7] via-[#7c3aed] to-[#4c1d95]"
                  animate={{ width: `${hpPercentage}%` }}
                  transition={{ duration: 0.5 }}
                />
@@ -172,14 +172,21 @@ export default function BossRaid({ bossName, maxHp, questions, onGameEnd }: Boss
             animate={{ 
                y: [0, -10, 0], 
                scale: bossShake ? [1, 0.9, 1.1, 1] : 1,
-               filter: bossShake ? ["brightness(1)", "brightness(2) hue-rotate(90deg)", "brightness(1)"] : "brightness(1)"
+               filter: bossShake ? ["brightness(1)", "brightness(1.8) hue-rotate(35deg)", "brightness(1)"] : "brightness(1)"
             }} 
             transition={{ y: { repeat: Infinity, duration: 4, ease: "easeInOut" } }}
             className="w-48 h-48 md:w-64 md:h-64 absolute right-10 md:right-24 top-10 md:top-1/2 md:-translate-y-1/2"
           >
-             <div className="w-full h-full bg-[#ef4444] rounded-[40%] bg-gradient-to-br from-[#ef4444] to-[#7f1d1d] shadow-[0_0_50px_rgba(239,68,68,0.3)] border-4 border-[#b91c1c] flex items-center justify-center relative overflow-hidden">
-                <div className="absolute w-20 h-2 bg-black/40 top-1/3 rounded-full"></div>
-                <div className="w-16 h-16 bg-black rounded-full shadow-[inset_0_0_20px_rgba(239,68,68,0.8)] border border-[#ef4444]"></div>
+             <div className="w-full h-full bg-[#7c3aed] rounded-[42%_58%_48%_52%] bg-gradient-to-br from-[#c084fc] via-[#7c3aed] to-[#312e81] shadow-[0_0_70px_rgba(168,85,247,0.55)] border-4 border-[#a855f7] flex items-center justify-center relative overflow-hidden">
+                <div className="absolute -top-4 left-10 w-10 h-20 bg-[#4c1d95] border-4 border-[#a855f7] rounded-full rotate-[-28deg]"></div>
+                <div className="absolute -top-4 right-10 w-10 h-20 bg-[#4c1d95] border-4 border-[#a855f7] rounded-full rotate-[28deg]"></div>
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.35),transparent_18%),radial-gradient(circle_at_72%_70%,rgba(76,29,149,0.7),transparent_28%)]"></div>
+                <div className="absolute w-28 h-4 bg-black/35 top-1/3 rounded-full"></div>
+                <div className="relative w-20 h-20 bg-black rounded-full shadow-[inset_0_0_24px_rgba(168,85,247,0.9),0_0_30px_rgba(216,180,254,0.4)] border-2 border-[#d8b4fe] flex items-center justify-center">
+                   <div className="w-8 h-8 bg-[#d8b4fe] rounded-full shadow-[0_0_18px_rgba(216,180,254,0.9)]"></div>
+                </div>
+                <div className="absolute bottom-8 left-12 w-8 h-8 bg-[#4c1d95] rounded-full border border-[#c084fc]/60"></div>
+                <div className="absolute bottom-12 right-14 w-6 h-6 bg-[#4c1d95] rounded-full border border-[#c084fc]/60"></div>
              </div>
           </motion.div>
        </div>
