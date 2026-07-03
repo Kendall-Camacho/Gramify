@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model QuestionBank {
+  id          Int        @id @default(autoincrement())
+  title       String
+  description String
+  category    String
+  status      String     @default("draft") // draft or approved
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  questions   Question[]
+}
+
+model Question {
+  id         Int          @id @default(autoincrement())
+  bank       QuestionBank @relation(fields: [bankId], references: [id], onDelete: Cascade)
+  bankId     Int
+  gameMode   String       // towerClimb, millionaire, etc.
+  difficulty Int          @default(3)
+  data       String       // JSON stringified data
+}
