@@ -21,6 +21,17 @@ interface BossRaidProps {
 
 export default function BossRaid({ bossName, maxHp, questions, onGameEnd }: BossRaidProps) {
   const randomizedQuestions = React.useMemo(() => shuffleQuestions(questions), [questions]);
+  const bossSpriteRows = [
+    '00011011000',
+    '00111111100',
+    '01101110110',
+    '11111111111',
+    '11011111011',
+    '11111111111',
+    '00110110100',
+    '01100000110',
+    '11000000011',
+  ];
   const [currentHp, setCurrentHp] = useState(maxHp);
   const [classHp, setClassHp] = useState(100);
   const [currentQIndex, setCurrentQIndex] = useState(0);
@@ -177,16 +188,37 @@ export default function BossRaid({ bossName, maxHp, questions, onGameEnd }: Boss
             transition={{ y: { repeat: Infinity, duration: 4, ease: "easeInOut" } }}
             className="w-48 h-48 md:w-64 md:h-64 absolute right-10 md:right-24 top-10 md:top-1/2 md:-translate-y-1/2"
           >
-             <div className="w-full h-full bg-[#7c3aed] rounded-[42%_58%_48%_52%] bg-gradient-to-br from-[#c084fc] via-[#7c3aed] to-[#312e81] shadow-[0_0_70px_rgba(168,85,247,0.55)] border-4 border-[#a855f7] flex items-center justify-center relative overflow-hidden">
-                <div className="absolute -top-4 left-10 w-10 h-20 bg-[#4c1d95] border-4 border-[#a855f7] rounded-full rotate-[-28deg]"></div>
-                <div className="absolute -top-4 right-10 w-10 h-20 bg-[#4c1d95] border-4 border-[#a855f7] rounded-full rotate-[28deg]"></div>
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.35),transparent_18%),radial-gradient(circle_at_72%_70%,rgba(76,29,149,0.7),transparent_28%)]"></div>
-                <div className="absolute w-28 h-4 bg-black/35 top-1/3 rounded-full"></div>
-                <div className="relative w-20 h-20 bg-black rounded-full shadow-[inset_0_0_24px_rgba(168,85,247,0.9),0_0_30px_rgba(216,180,254,0.4)] border-2 border-[#d8b4fe] flex items-center justify-center">
-                   <div className="w-8 h-8 bg-[#d8b4fe] rounded-full shadow-[0_0_18px_rgba(216,180,254,0.9)]"></div>
+             <div className="w-full h-full flex items-center justify-center relative">
+                <div className="absolute w-48 h-32 md:w-64 md:h-44 bg-[#7c3aed]/25 blur-2xl rounded-full"></div>
+                <div className="relative grid grid-rows-9 gap-1 md:gap-1.5 p-4 bg-[#12091f]/70 border-4 border-[#a855f7] shadow-[0_0_55px_rgba(168,85,247,0.55)] [image-rendering:pixelated]">
+                   {bossSpriteRows.map((row, rowIndex) => (
+                      <div key={rowIndex} className="grid grid-cols-11 gap-1 md:gap-1.5">
+                         {row.split('').map((cell, colIndex) => {
+                            const isEye = cell === '1' && rowIndex === 2 && (colIndex === 3 || colIndex === 7);
+                            const isCore = cell === '1' && rowIndex >= 3 && rowIndex <= 5 && colIndex >= 4 && colIndex <= 6;
+                            return (
+                               <div
+                                  key={`${rowIndex}-${colIndex}`}
+                                  className={cn(
+                                     "w-3 h-3 md:w-4 md:h-4",
+                                     cell === '1'
+                                       ? isEye
+                                         ? "bg-[#f0abfc] shadow-[0_0_12px_rgba(240,171,252,0.9)]"
+                                         : isCore
+                                           ? "bg-[#c084fc] shadow-[0_0_10px_rgba(192,132,252,0.75)]"
+                                           : "bg-[#7c3aed] shadow-[0_0_8px_rgba(124,58,237,0.65)]"
+                                       : "bg-transparent"
+                                  )}
+                               />
+                            );
+                         })}
+                      </div>
+                   ))}
+                   <div className="absolute -bottom-6 left-8 grid grid-cols-2 gap-12">
+                      <div className="w-4 h-8 md:w-5 md:h-10 bg-[#a855f7] shadow-[0_0_14px_rgba(168,85,247,0.8)]"></div>
+                      <div className="w-4 h-8 md:w-5 md:h-10 bg-[#a855f7] shadow-[0_0_14px_rgba(168,85,247,0.8)]"></div>
+                   </div>
                 </div>
-                <div className="absolute bottom-8 left-12 w-8 h-8 bg-[#4c1d95] rounded-full border border-[#c084fc]/60"></div>
-                <div className="absolute bottom-12 right-14 w-6 h-6 bg-[#4c1d95] rounded-full border border-[#c084fc]/60"></div>
              </div>
           </motion.div>
        </div>
