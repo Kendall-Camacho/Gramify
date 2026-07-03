@@ -9,11 +9,12 @@ export default function PixelReveal({ questions, onGameEnd }: { questions: any[]
 
   const isWon = hiddenTiles.size === 0;
   const currentQ = questions[currentQIndex % questions.length];
+  const options = currentQ?.options || [];
 
   const handleOption = (option: string) => {
-    if (isWon) return;
+    if (isWon || !currentQ) return;
 
-    if (option === currentQ.answer) {
+    if (option.trim().toLowerCase() === currentQ.answer.trim().toLowerCase()) {
       // Find a random hidden tile and reveal it
       const hiddenArray = Array.from(hiddenTiles);
       if (hiddenArray.length > 0) {
@@ -84,15 +85,41 @@ export default function PixelReveal({ questions, onGameEnd }: { questions: any[]
          >
             <h4 className="text-xl font-semibold">{currentQ.question}</h4>
             <div className="flex flex-col gap-3">
-               {currentQ.options.map((opt: string, i: number) => (
-                 <button 
-                   key={i}
-                   onClick={() => handleOption(opt)}
-                   className="w-full text-left p-4 rounded-xl border border-border bg-accent hover:border-pink-500/50 hover:bg-pink-500/10 transition-colors"
-                 >
-                   {opt}
-                 </button>
-               ))}
+               {options && options.length > 0 ? (
+                 options.map((opt: string, i: number) => (
+                   <button 
+                     key={i}
+                     onClick={() => handleOption(opt)}
+                     className="w-full text-left p-4 rounded-xl border border-border bg-accent hover:border-pink-500/50 hover:bg-pink-500/10 transition-colors cursor-pointer"
+                   >
+                     {opt}
+                   </button>
+                 ))
+               ) : (
+                 <div className="flex flex-col gap-3">
+                   <input 
+                     type="text" 
+                     placeholder="Escribe tu respuesta aquí..." 
+                     className="w-full p-4 rounded-xl border border-border bg-accent text-white focus:outline-none focus:border-pink-500 text-sm"
+                     onKeyDown={(e) => {
+                       if (e.key === 'Enter') {
+                         handleOption(e.currentTarget.value);
+                         e.currentTarget.value = '';
+                       }
+                     }}
+                   />
+                   <button 
+                     onClick={(e) => {
+                       const input = e.currentTarget.previousElementSibling as HTMLInputElement;
+                       handleOption(input.value);
+                       input.value = '';
+                     }}
+                     className="w-full p-4 rounded-xl bg-pink-500 text-white font-bold hover:bg-pink-600 transition-colors text-sm cursor-pointer"
+                   >
+                     Verificar Respuesta
+                   </button>
+                 </div>
+               )}
             </div>
          </motion.div>
       </div>
