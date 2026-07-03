@@ -51,6 +51,31 @@ export default function Dashboard() {
       setIsGenerating(false);
     }
   };
+  
+  const handleTemplateTrigger = async (templateId: string) => {
+    setIsGenerating(true);
+    try {
+      const res = await fetch('/api/load-template', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ templateId })
+      });
+      if (!res.ok) {
+         const errText = await res.text();
+         throw new Error(`Server Error (${res.status}): ${errText.substring(0, 100)}`);
+      }
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+
+      setGameData(data.gameData || data);
+      setActiveMode('menu');
+    } catch (err: any) {
+      console.error(err);
+      alert('Error al cargar plantilla: ' + err.message);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
 
   const fileUploadHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return;
@@ -421,8 +446,49 @@ export default function Dashboard() {
                )}
              </button>
            </div>
-        </motion.div>
-      </div>
-    </div>
-  );
+         </motion.div>
+       </div>
+
+       {/* Pre-made MVP Templates Section */}
+       <div className="flex flex-col gap-4 mt-6 border-t border-border pt-8">
+         <div className="flex flex-col gap-1">
+           <h2 className="text-[20px] font-bold flex items-center gap-2">
+             <CopyCheck className="w-5 h-5 text-primary" />
+             Plantillas Prediseñadas del MVP (Sin IA)
+           </h2>
+           <p className="text-text-muted text-[13px]">
+             Inicia un juego instantáneamente con módulos preestablecidos de asignaturas comunes sin necesidad de procesar archivos.
+           </p>
+         </div>
+         
+         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
+           {[
+             { id: 'es-ortografia', title: 'Ortografía y Acentuación', subject: 'Español', desc: 'Reglas de acentuación, diptongos, hiatos y esdrújulas.' },
+             { id: 'ciencias-celula', title: 'La Célula y su Funcionamiento', subject: 'Ciencias', desc: 'Orgánulos, célula animal/vegetal, y procesos celulares.' },
+             { id: 'historia-revolucion', title: 'La Revolución Industrial', subject: 'Historia', desc: 'Máquina de vapor, consecuencias sociales e innovaciones.' },
+             { id: 'mates-ecuaciones', title: 'Ecuaciones de 1er Grado', subject: 'Matemáticas', desc: 'Resolución de ecuaciones lineales simples y despeje de x.' }
+           ].map(template => (
+              <motion.div
+                key={template.id}
+                className="bg-surface rounded-xl border border-border p-5 flex flex-col justify-between gap-4 cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-all group"
+                whileHover={{ y: -2 }}
+                onClick={() => handleTemplateTrigger(template.id)}
+              >
+                <div className="flex flex-col gap-2">
+                  <span className="text-[10px] uppercase tracking-wider text-primary font-bold">{template.subject}</span>
+                  <h4 className="text-[15px] font-bold group-hover:text-primary transition-colors">{template.title}</h4>
+                  <p className="text-text-muted text-[12px] leading-relaxed">{template.desc}</p>
+                </div>
+                <button 
+                  disabled={isGenerating}
+                  className="mt-2 text-[12px] font-semibold text-primary group-hover:underline flex items-center gap-1 self-start cursor-pointer"
+                >
+                  <Play className="w-3 h-3 fill-primary" /> Cargar Juego
+                </button>
+              </motion.div>
+           ))}
+         </div>
+       </div>
+     </div>
+   );
 }

@@ -8,11 +8,11 @@ import { PrismaClient } from '@prisma/client';
 
 import { createClient } from '@libsql/client';
 import { PrismaLibSql } from '@prisma/adapter-libsql';
+import { mvpTemplates } from './templates';
 
-const libsql = createClient({
+const adapter = new PrismaLibSql({
   url: process.env.DATABASE_URL || 'file:./dev.db'
 });
-const adapter = new PrismaLibSql(libsql);
 const prisma = new PrismaClient({ adapter });
 
 const upload = multer({ storage: multer.memoryStorage() });
@@ -101,6 +101,38 @@ Core Concepts:
 Modern cybersecurity also deals with malware (ransomware, trojans), phishing, and securing network protocols (like SSL/TLS which secures HTTPS). 
     `.trim();
     res.json({ content: defaultText });
+  });
+  
+  // Load predefined MVP templates without AI
+  app.post('/api/load-template', async (req, res) => {
+    try {
+      const { templateId } = req.body;
+      const template = mvpTemplates[templateId];
+      if (!template) {
+        return res.status(400).json({ error: 'Template not found' });
+      }
+
+      const bank = await prisma.questionBank.create({
+        data: {
+          title: template.title,
+          description: template.description,
+          category: template.category,
+          status: 'approved',
+          questions: {
+            create: Object.keys(template.gameData).map(key => ({
+              gameMode: key,
+              difficulty: 3,
+              data: JSON.stringify(template.gameData[key])
+            }))
+          }
+        }
+      });
+
+      res.json({ bankId: bank.id, gameData: template.gameData });
+    } catch (error: any) {
+      console.error('Error loading template:', error);
+      res.status(500).json({ error: error.message || 'Failed to load template' });
+    }
   });
 
   // Game generation route using Gemini API
