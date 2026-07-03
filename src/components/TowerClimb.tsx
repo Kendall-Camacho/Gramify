@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Trophy, ChevronUp, CheckCircle2, XCircle, Milestone } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { shuffleQuestions } from '../lib/shuffle';
 
-export default function TowerClimb({ questions, onGameEnd }: { questions: any[]; onGameEnd: () => void }) {
+export default function TowerClimb({ questions, onGameEnd }: { questions: any[]; onGameEnd: (correct?: number) => void }) {
+  const randomizedQuestions = React.useMemo(() => shuffleQuestions(questions), [questions]);
   const [currentFloor, setCurrentFloor] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isEvaluating, setIsEvaluating] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [gameWon, setGameWon] = useState(false);
 
-  const currentQ = questions[currentFloor];
+  const currentQ = randomizedQuestions[currentFloor];
 
   const handleOptionSelect = (option: string) => {
     if (isEvaluating || gameOver || gameWon) return;
@@ -21,7 +23,7 @@ export default function TowerClimb({ questions, onGameEnd }: { questions: any[];
     setTimeout(() => {
       if (option === currentQ.answer) {
         setTimeout(() => {
-          if (currentFloor + 1 >= questions.length) { setGameWon(true); } 
+          if (currentFloor + 1 >= randomizedQuestions.length) { setGameWon(true); } 
           else { setCurrentFloor(prev => prev + 1); setSelectedOption(null); setIsEvaluating(false); }
         }, 800);
       } else {
@@ -38,7 +40,7 @@ export default function TowerClimb({ questions, onGameEnd }: { questions: any[];
          </div>
          <h2 className="text-4xl font-bold text-text-main">¡Torre Conquistada!</h2>
          <p className="text-text-muted">Llegaste triunfante a la cima respondiendo impecablemente todo.</p>
-         <button onClick={onGameEnd} className="mt-4 bg-[#22d3ee]/10 border border-[#22d3ee] text-[#22d3ee] hover:bg-[#22d3ee]/20 px-8 py-3 rounded-xl font-bold transition-colors">Volver al Menú</button>
+         <button onClick={() => onGameEnd(randomizedQuestions.length)} className="mt-4 bg-[#22d3ee]/10 border border-[#22d3ee] text-[#22d3ee] hover:bg-[#22d3ee]/20 px-8 py-3 rounded-xl font-bold transition-colors">Volver al Menú</button>
       </motion.div>
     );
   }
@@ -53,7 +55,7 @@ export default function TowerClimb({ questions, onGameEnd }: { questions: any[];
          <p className="text-text-muted">Un error de cálculo te hizo resbalar. Prepara tu mente e inténtalo de nuevo.</p>
          <div className="flex gap-4 mt-4">
            <button onClick={() => { setCurrentFloor(0); setSelectedOption(null); setIsEvaluating(false); setGameOver(false); }} className="bg-accent border border-border hover:bg-border text-text-main px-8 py-3 rounded-xl font-bold transition-colors">Reintentar</button>
-           <button onClick={onGameEnd} className="bg-surface border border-border text-text-muted hover:text-text-main px-8 py-3 rounded-xl font-bold transition-colors">Salir</button>
+           <button onClick={() => onGameEnd(currentFloor)} className="bg-surface border border-border text-text-muted hover:text-text-main px-8 py-3 rounded-xl font-bold transition-colors">Salir</button>
          </div>
       </motion.div>
     );
@@ -64,7 +66,7 @@ export default function TowerClimb({ questions, onGameEnd }: { questions: any[];
       <div className="w-full md:w-1/4 flex flex-col gap-4 bg-surface border border-border rounded-2xl p-6 relative overflow-hidden">
          <h3 className="font-bold text-lg border-b border-border pb-4 mb-4 flex items-center gap-2"><Milestone className="w-5 h-5 text-secondary" /> Escalada Visual</h3>
          <div className="flex flex-col-reverse gap-4 relative z-10">
-            {questions.map((q: any, idx: number) => {
+            {randomizedQuestions.map((q: any, idx: number) => {
               const state = idx < currentFloor ? "completed" : idx === currentFloor ? "active" : "locked";
               return (
                 <div key={idx} className="flex items-center gap-4 relative">

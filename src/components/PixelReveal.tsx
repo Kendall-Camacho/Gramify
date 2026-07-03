@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ImageIcon, CheckCircle2, Award } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { shuffleQuestions } from '../lib/shuffle';
 
-export default function PixelReveal({ questions, onGameEnd }: { questions: any[]; onGameEnd: () => void }) {
+export default function PixelReveal({ questions, onGameEnd }: { questions: any[]; onGameEnd: (correct?: number) => void }) {
+  const randomizedQuestions = React.useMemo(() => shuffleQuestions(questions), [questions]);
   const [hiddenTiles, setHiddenTiles] = useState<Set<number>>(new Set([0,1,2,3,4,5,6,7,8]));
   const [currentQIndex, setCurrentQIndex] = useState(0);
 
   const isWon = hiddenTiles.size === 0;
-  const currentQ = questions[currentQIndex % questions.length];
+  const currentQ = randomizedQuestions[currentQIndex % randomizedQuestions.length];
   const options = currentQ?.options || [];
 
   const handleOption = (option: string) => {
@@ -37,7 +39,7 @@ export default function PixelReveal({ questions, onGameEnd }: { questions: any[]
          </div>
          <h2 className="text-4xl font-bold text-pink-400 mt-4">¡Imagen Revelada Completamente!</h2>
          <p className="text-pink-200/70">Tu enfoque constante descubrió el panorama oculto.</p>
-         <button onClick={onGameEnd} className="mt-2 bg-pink-500/20 border border-pink-500 text-pink-500 hover:bg-pink-500/30 px-8 py-3 rounded-xl font-bold transition-colors">
+         <button onClick={() => onGameEnd(9)} className="mt-2 bg-pink-500/20 border border-pink-500 text-pink-500 hover:bg-pink-500/30 px-8 py-3 rounded-xl font-bold transition-colors">
            Regresar al Menú
          </button>
       </motion.div>

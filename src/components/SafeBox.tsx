@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Lock, KeyRound, Unlock, XCircle } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { shuffleQuestions } from '../lib/shuffle';
 
-export default function SafeBox({ questions, onGameEnd }: { questions: any[]; onGameEnd: () => void }) {
+export default function SafeBox({ questions, onGameEnd }: { questions: any[]; onGameEnd: (correct?: number) => void }) {
+  const randomizedQuestions = React.useMemo(() => shuffleQuestions(questions), [questions]);
   const [digits, setDigits] = useState<string[]>(Array(4).fill(''));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [errorStatus, setErrorStatus] = useState<string | null>(null);
@@ -13,7 +15,7 @@ export default function SafeBox({ questions, onGameEnd }: { questions: any[]; on
   const handleKeypad = (num: number) => {
     if (isWon || errorStatus) return;
 
-    if (num === questions[currentIndex].answer) {
+    if (num === randomizedQuestions[currentIndex].answer) {
       // Correct!
       const newDigits = [...digits];
       newDigits[currentIndex] = num.toString();
@@ -35,7 +37,7 @@ export default function SafeBox({ questions, onGameEnd }: { questions: any[]; on
          <h2 className="text-4xl font-bold text-yellow-500">¡Bóveda Desbloqueada!</h2>
          <p className="text-yellow-200">Lograste descifrar el código maestro correctamente.</p>
          <div className="flex gap-4 mt-6">
-           <button onClick={onGameEnd} className="bg-yellow-500/20 border border-yellow-500 text-yellow-500 hover:bg-yellow-500/30 px-8 py-3 rounded-xl font-bold transition-colors">
+           <button onClick={() => onGameEnd(currentIndex)} className="bg-yellow-500/20 border border-yellow-500 text-yellow-500 hover:bg-yellow-500/30 px-8 py-3 rounded-xl font-bold transition-colors">
              Regresar al Menú
            </button>
          </div>
@@ -98,7 +100,7 @@ export default function SafeBox({ questions, onGameEnd }: { questions: any[]; on
                className="bg-accent border border-border p-8 rounded-2xl shadow-xl mt-4"
              >
                <span className="text-xs font-bold uppercase tracking-widest text-secondary font-mono">Dígito Requerido #{currentIndex + 1}</span>
-               <h4 className="text-2xl font-semibold mt-4 leading-relaxed">{questions[currentIndex]?.question}</h4>
+               <h4 className="text-2xl font-semibold mt-4 leading-relaxed">{randomizedQuestions[currentIndex]?.question}</h4>
              </motion.div>
          </AnimatePresence>
       </div>

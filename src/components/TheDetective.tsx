@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Search, Info, CheckCircle2 } from 'lucide-react';
 import { cn } from '../lib/utils';
 
-export default function TheDetective({ data, onGameEnd }: { data: { story: string; lies: { falsePhrase: string; truth: string }[] }; onGameEnd: () => void }) {
+export default function TheDetective({ data, onGameEnd }: { data: { story: string; lies: { falsePhrase: string; truth: string }[] }; onGameEnd: (correct?: number) => void }) {
   const [foundLies, setFoundLies] = useState<Set<number>>(new Set());
   const [clickError, setClickError] = useState(false);
   const [clickPos, setClickPos] = useState({ x: 0, y: 0 });
@@ -39,7 +39,7 @@ export default function TheDetective({ data, onGameEnd }: { data: { story: strin
          </div>
          <h2 className="text-4xl font-bold text-[#e0e7ff]">¡Caso Cerrado!</h2>
          <p className="text-[#c7d2fe]">Has identificado toda la información falsa y desvelado la verdad oculta.</p>
-         <button onClick={onGameEnd} className="mt-4 bg-[#818cf8]/20 border border-[#818cf8] text-[#818cf8] hover:bg-[#818cf8]/30 px-8 py-3 rounded-xl font-bold transition-colors">
+         <button onClick={() => onGameEnd(data.lies.length)} className="mt-4 bg-[#818cf8]/20 border border-[#818cf8] text-[#818cf8] hover:bg-[#818cf8]/30 px-8 py-3 rounded-xl font-bold transition-colors">
            Regresar al Menú
          </button>
       </motion.div>

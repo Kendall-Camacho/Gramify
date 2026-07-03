@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { HelpCircle, Phone, Users, CheckCircle2, XCircle, ArrowRight } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { shuffleQuestions } from '../lib/shuffle';
 import confetti from 'canvas-confetti';
 
 interface Question {
@@ -10,7 +11,8 @@ interface Question {
   answer: string;
 }
 
-export default function Millionaire({ questions, onGameEnd }: { questions: Question[]; onGameEnd: () => void }) {
+export default function Millionaire({ questions, onGameEnd }: { questions: Question[]; onGameEnd: (correct?: number) => void }) {
+  const randomizedQuestions = React.useMemo(() => shuffleQuestions(questions), [questions]);
   const [currentLevel, setCurrentLevel] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isEvaluating, setIsEvaluating] = useState(false);
@@ -31,8 +33,8 @@ export default function Millionaire({ questions, onGameEnd }: { questions: Quest
   const safeHavens = [4, 9, 14]; // Index of $1000, $32,000, $1M
 
   // Ensure we don't go out of bounds if the AI returned fewer than 15 questions
-  const qIndex = Math.min(currentLevel, questions.length - 1);
-  const currentQ = questions[qIndex];
+  const qIndex = Math.min(currentLevel, randomizedQuestions.length - 1);
+  const currentQ = randomizedQuestions[qIndex];
 
   const handleOptionSelect = (option: string) => {
     if (isEvaluating || gameState !== 'playing') return;
@@ -45,7 +47,7 @@ export default function Millionaire({ questions, onGameEnd }: { questions: Quest
       // Reveal Result
       if (option === currentQ.answer) {
         setTimeout(() => {
-          if (currentLevel + 1 >= prizeLadder.length || currentLevel + 1 >= questions.length) {
+          if (currentLevel + 1 >= prizeLadder.length || currentLevel + 1 >= randomizedQuestions.length) {
             triggerVictory();
           } else {
             setCurrentLevel(prev => prev + 1);
@@ -132,7 +134,7 @@ export default function Millionaire({ questions, onGameEnd }: { questions: Quest
          </div>
          <h2 className="text-5xl font-black bg-gradient-to-b from-yellow-200 to-yellow-500 bg-clip-text text-transparent drop-shadow-sm">¡MILLONARIO!</h2>
          <p className="text-xl text-blue-200 font-medium">Respondiste todo perfectamente.</p>
-         <button onClick={onGameEnd} className="mt-8 bg-yellow-500/20 border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 text-black hover:text-black hover:shadow-[0_0_20px_rgba(234,179,8,0.6)] px-10 py-4 rounded-full font-black uppercase tracking-widest transition-all">Regresar</button>
+         <button onClick={() => onGameEnd(randomizedQuestions.length)} className="mt-8 bg-yellow-500/20 border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 text-black hover:text-black hover:shadow-[0_0_20px_rgba(234,179,8,0.6)] px-10 py-4 rounded-full font-black uppercase tracking-widest transition-all">Regresar</button>
       </motion.div>
     );
   }
@@ -145,7 +147,7 @@ export default function Millionaire({ questions, onGameEnd }: { questions: Quest
          </div>
          <h2 className="text-4xl font-black text-red-500">Juego Terminado</h2>
          <p className="text-lg text-blue-200">Respuesta equivocada. Te llevas a casa un seguro de: <strong className="text-yellow-500 text-2xl ml-2">{getWinnings()}</strong></p>
-         <button onClick={onGameEnd} className="mt-6 border-2 border-surface bg-surface text-text-muted hover:text-text-main px-8 py-3 rounded-full font-bold transition-all">Volver al Panel</button>
+         <button onClick={() => onGameEnd(currentLevel)} className="mt-6 border-2 border-surface bg-surface text-text-muted hover:text-text-main px-8 py-3 rounded-full font-bold transition-all">Volver al Panel</button>
       </motion.div>
     );
   }

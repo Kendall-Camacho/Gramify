@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Layers, CheckCircle2, XCircle, Play, BookOpen } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { shuffleArray } from '../lib/shuffle';
 
 interface Concept {
   term: string;
@@ -14,6 +15,7 @@ interface ConceptMatchingProps {
 }
 
 export default function ConceptMatching({ concepts, onGameEnd }: ConceptMatchingProps) {
+  const randomizedConcepts = React.useMemo(() => shuffleArray(concepts), [concepts]);
   const [mode, setMode] = useState<'flashcards' | 'matching'>('flashcards');
   
   // Flashcard State
@@ -29,14 +31,14 @@ export default function ConceptMatching({ concepts, onGameEnd }: ConceptMatching
   const [wrongMatch, setWrongMatch] = useState<boolean>(false);
 
   React.useEffect(() => {
-    const terms = [...concepts].sort(() => Math.random() - 0.5);
-    const defs = [...concepts].sort(() => Math.random() - 0.5);
+    const terms = shuffleArray(randomizedConcepts);
+    const defs = shuffleArray(randomizedConcepts);
     setShuffledTerms(terms);
     setShuffledDefs(defs);
     setMatchedPairs(new Set());
     setSelectedTerm(null);
     setSelectedDef(null);
-  }, [concepts, mode]);
+  }, [randomizedConcepts, mode]);
 
   React.useEffect(() => {
     if (selectedTerm && selectedDef) {
@@ -60,14 +62,14 @@ export default function ConceptMatching({ concepts, onGameEnd }: ConceptMatching
   const handleNextCard = () => {
     setIsFlipped(false);
     setTimeout(() => {
-      setCurrentCardIdx((prev) => (prev + 1) % concepts.length);
+      setCurrentCardIdx((prev) => (prev + 1) % randomizedConcepts.length);
     }, 150);
   };
 
   const handlePrevCard = () => {
     setIsFlipped(false);
     setTimeout(() => {
-      setCurrentCardIdx((prev) => (prev - 1 + concepts.length) % concepts.length);
+      setCurrentCardIdx((prev) => (prev - 1 + randomizedConcepts.length) % randomizedConcepts.length);
     }, 150);
   };
 
@@ -112,21 +114,21 @@ export default function ConceptMatching({ concepts, onGameEnd }: ConceptMatching
                 <div className="absolute w-full h-full backface-hidden bg-surface border-2 border-border rounded-2xl flex flex-col items-center justify-center p-8 shadow-xl" style={{ backfaceVisibility: 'hidden' }}>
                   <span className="absolute top-6 left-6 text-xs uppercase tracking-widest text-[#8b5cf6] font-bold bg-[#8b5cf6]/10 px-3 py-1 rounded">Término</span>
                   <h3 className="text-4xl font-bold text-center text-text-main leading-tight">
-                    {concepts[currentCardIdx].term}
+                    {randomizedConcepts[currentCardIdx].term}
                   </h3>
                   <p className="absolute bottom-6 text-sm text-text-muted">Clic para girar</p>
                 </div>
                 <div className="absolute w-full h-full backface-hidden bg-accent border-2 border-primary/30 rounded-2xl flex flex-col items-center justify-center p-10 shadow-xl" style={{ backfaceVisibility: 'hidden', transform: 'rotateX(180deg)' }}>
                   <span className="absolute top-6 left-6 text-xs uppercase tracking-widest text-primary font-bold bg-primary/10 px-3 py-1 rounded">Definición</span>
                   <p className="text-xl md:text-2xl text-center text-text-main leading-relaxed">
-                    {concepts[currentCardIdx].definition}
+                    {randomizedConcepts[currentCardIdx].definition}
                   </p>
                 </div>
              </motion.div>
            </div>
            <div className="flex items-center gap-6">
               <button onClick={handlePrevCard} className="px-6 py-2 rounded-lg border border-border text-text-main hover:bg-accent transition-colors">Atrás</button>
-              <span className="text-text-muted font-mono">{currentCardIdx + 1} / {concepts.length}</span>
+              <span className="text-text-muted font-mono">{currentCardIdx + 1} / {randomizedConcepts.length}</span>
               <button onClick={handleNextCard} className="px-6 py-2 rounded-lg border border-border text-text-main hover:bg-accent transition-colors">Siguiente</button>
            </div>
         </div>

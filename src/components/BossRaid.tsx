@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Shield, Swords, Heart, Zap, Crosshair } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { shuffleQuestions } from '../lib/shuffle';
 import confetti from 'canvas-confetti';
 
 interface Question {
@@ -19,6 +20,7 @@ interface BossRaidProps {
 }
 
 export default function BossRaid({ bossName, maxHp, questions, onGameEnd }: BossRaidProps) {
+  const randomizedQuestions = React.useMemo(() => shuffleQuestions(questions), [questions]);
   const [currentHp, setCurrentHp] = useState(maxHp);
   const [classHp, setClassHp] = useState(100);
   const [currentQIndex, setCurrentQIndex] = useState(0);
@@ -28,7 +30,7 @@ export default function BossRaid({ bossName, maxHp, questions, onGameEnd }: Boss
   const [playerShake, setPlayerShake] = useState(false);
   const [damageText, setDamageText] = useState<{ value: number; x: number; y: number; type: 'boss' | 'player' } | null>(null);
 
-  const currentQ = questions[currentQIndex % questions.length]; // Loop questions if needed
+  const currentQ = randomizedQuestions[currentQIndex % randomizedQuestions.length]; // Loop questions if needed
 
   const handleOptionSelect = (option: string) => {
     if (isEvaluating) return;
