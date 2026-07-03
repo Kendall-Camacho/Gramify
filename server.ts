@@ -6,13 +6,14 @@ import { GoogleGenAI } from '@google/genai';
 import path from 'path';
 import { PrismaClient } from '@prisma/client';
 
-import { createClient } from '@libsql/client';
-import { PrismaLibSql } from '@prisma/adapter-libsql';
+import pg from 'pg';
+import { PrismaPg } from '@prisma/adapter-pg';
 import { mvpTemplates } from './templates';
 
-const adapter = new PrismaLibSql({
-  url: process.env.DATABASE_URL || 'file:./dev.db'
+const pool = new pg.Pool({
+  connectionString: process.env.DATABASE_URL
 });
+const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 const upload = multer({ storage: multer.memoryStorage() });
