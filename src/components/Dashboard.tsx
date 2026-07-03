@@ -464,9 +464,9 @@ export default function Dashboard() {
          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
            {[
              { id: 'es-ortografia', title: 'Ortografía y Acentuación', subject: 'Español', desc: 'Reglas de acentuación, diptongos, hiatos y esdrújulas.' },
-             { id: 'ciencias-celula', title: 'La Célula y su Funcionamiento', subject: 'Ciencias', desc: 'Orgánulos, célula animal/vegetal, y procesos celulares.' },
-             { id: 'historia-revolucion', title: 'La Revolución Industrial', subject: 'Historia', desc: 'Máquina de vapor, consecuencias sociales e innovaciones.' },
-             { id: 'mates-ecuaciones', title: 'Ecuaciones de 1er Grado', subject: 'Matemáticas', desc: 'Resolución de ecuaciones lineales simples y despeje de x.' }
+             { id: 'ciencias-primaria', title: 'Ciencias y Cuerpo Humano', subject: 'Ciencias', desc: 'Célula, órganos, sentidos, huesos, sangre y hábitos saludables (+50 preguntas).' },
+             { id: 'cultura-primaria', title: 'Cultura General Básica', subject: 'Cultura', desc: 'Geografía elemental, dinosaurios, Big Ben, países y datos curiosos (+50 preguntas).' },
+             { id: 'mates-primaria', title: 'Matemáticas Divertidas', subject: 'Matemáticas', desc: 'Cálculo mental rápido, sumas, restas, series y problemas lógicos.' }
            ].map(template => (
               <motion.div
                 key={template.id}
